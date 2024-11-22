@@ -1,0 +1,9 @@
+/Users/ezechiel/repos/docker-stack-test/backend/Backend.Api/bin/Release/net9.0/publish/Backend.Api
+/Users/ezechiel/repos/docker-stack-test/backend/Backend.Api/bin/Release/net9.0/publish/appsettings.Development.json
+/Users/ezechiel/repos/docker-stack-test/backend/Backend.Api/bin/Release/net9.0/publish/appsettings.json
+/Users/ezechiel/repos/docker-stack-test/backend/Backend.Api/bin/Release/net9.0/publish/Backend.Api.dll
+/Users/ezechiel/repos/docker-stack-test/backend/Backend.Api/bin/Release/net9.0/publish/Backend.Api.deps.json
+/Users/ezechiel/repos/docker-stack-test/backend/Backend.Api/bin/Release/net9.0/publish/Backend.Api.runtimeconfig.json
+/Users/ezechiel/repos/docker-stack-test/backend/Backend.Api/bin/Release/net9.0/publish/Backend.Api.pdb
+/Users/ezechiel/repos/docker-stack-test/backend/Backend.Api/bin/Release/net9.0/publish/Microsoft.AspNetCore.OpenApi.dll
+/Users/ezechiel/repos/docker-stack-test/backend/Backend.Api/bin/Release/net9.0/publish/Microsoft.OpenApi.dll

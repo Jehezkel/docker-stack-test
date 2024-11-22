@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "sI1tkbcUSJ4=",
+  "success": true,
+  "projectFilePath": "/Users/ezechiel/repos/docker-stack-test/backend/Backend.Api/Backend.Api.csproj",
+  "expectedPackageFiles": [
+    "/Users/ezechiel/.nuget/packages/microsoft.aspnetcore.openapi/9.0.0/microsoft.aspnetcore.openapi.9.0.0.nupkg.sha512",
+    "/Users/ezechiel/.nuget/packages/microsoft.openapi/1.6.17/microsoft.openapi.1.6.17.nupkg.sha512"
+  ],
+  "logs": []
+}

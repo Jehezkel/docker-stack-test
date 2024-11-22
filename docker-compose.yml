@@ -9,7 +9,14 @@ services:
       - angular-dist:/usr/share/nginx/html
     depends_on:
       - backend
-  
+    deploy:
+      resources:
+          limits:
+            cpus: "0.4"
+            memory: 256M 
+          reservations:
+            cpus: "0.2"
+            memory: 128M
   backend:
     build:
       context: ./backend/Backend.Api
@@ -19,6 +26,14 @@ services:
       - ASPNETCORE_URLS=http://+:8080
     expose:
       - "8080"
+    deploy:
+      resources:
+          limits:
+            cpus: "0.8"
+            memory: 512M
+          reservations:
+            cpus: "0.4"
+            memory: 256M
 
   angular-build:
     build:

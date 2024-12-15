@@ -26,6 +26,8 @@ services:
       - ASPNETCORE_URLS=http://+:8080
     expose:
       - "8080"
+    depends_on:
+      - database
     deploy:
       resources:
           limits:
@@ -42,5 +44,21 @@ services:
     volumes:
       - angular-dist:/app/dist/client-app/browser
 
+  database:
+    image: postgres:alpine
+    environment:
+      #TODO: TO BE MOVED TO SECRETS
+      POSTGRES_PASSWORD: postgres
+      PGDATA: /var/lib/postgresql/data/pgdata
+    deploy:
+      resources:
+          limits:
+            cpus: "0.4"
+            memory: 256M 
+          reservations:
+            cpus: "0.2"
+            memory: 128M
+    volumes:
+      - ./data/postgres_data:/var/lib/postgresql/data
 volumes:
   angular-dist:

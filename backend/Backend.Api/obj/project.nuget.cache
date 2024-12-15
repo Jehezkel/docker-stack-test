@@ -1,11 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "sI1tkbcUSJ4=",
+  "dgSpecHash": "OKjJFyW6q5A=",
   "success": true,
   "projectFilePath": "/Users/ezechiel/repos/docker-stack-test/backend/Backend.Api/Backend.Api.csproj",
   "expectedPackageFiles": [
+    "/Users/ezechiel/.nuget/packages/mediatr/12.4.1/mediatr.12.4.1.nupkg.sha512",
+    "/Users/ezechiel/.nuget/packages/mediatr.contracts/2.0.1/mediatr.contracts.2.0.1.nupkg.sha512",
     "/Users/ezechiel/.nuget/packages/microsoft.aspnetcore.openapi/9.0.0/microsoft.aspnetcore.openapi.9.0.0.nupkg.sha512",
-    "/Users/ezechiel/.nuget/packages/microsoft.openapi/1.6.17/microsoft.openapi.1.6.17.nupkg.sha512"
+    "/Users/ezechiel/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/8.0.0/microsoft.extensions.dependencyinjection.abstractions.8.0.0.nupkg.sha512",
+    "/Users/ezechiel/.nuget/packages/microsoft.openapi/1.6.22/microsoft.openapi.1.6.22.nupkg.sha512",
+    "/Users/ezechiel/.nuget/packages/swashbuckle.aspnetcore.swagger/7.1.0/swashbuckle.aspnetcore.swagger.7.1.0.nupkg.sha512"
   ],
   "logs": []
 }

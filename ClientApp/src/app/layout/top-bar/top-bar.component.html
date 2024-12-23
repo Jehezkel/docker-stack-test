@@ -1,1 +1,18 @@
-<p>top-bar works!</p>
+<!--toolbar background-->
+<div class="w-screen shadow flex mb-2 select-none">
+  <!--toolbar-->
+  <div class="flex max-w-7xl mx-auto h-10 my-1  w-full items-center px-2">
+    <div class="flex w-full ">
+      <!--links-->
+      <div class="flex space-x-4">
+        <a routerLink="home" class="p-2 rounded-xl hover:bg-sky-200 transition-colors">Home</a>
+        <a routerLink="about" class="p-2 rounded-xl hover:bg-sky-200 transition-colors"> About</a>
+      </div>
+      <!--user section-->
+      <div class="flex ml-auto space-x-2">
+        <p class="p-2"> {{ userName$ |async }}</p>
+        <button (click)="onLogout()" class="p-2 rounded-xl hover:bg-sky-200 transition-colors"> Log out</button>
+      </div>
+    </div>
+  </div>
+</div>

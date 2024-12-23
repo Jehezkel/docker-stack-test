@@ -1,1 +1,5 @@
-<app-layout/>
+@if((auth.isAuthenticated$ | async) !== true){
+<app-login-page />
+}@else{
+<app-layout />
+}

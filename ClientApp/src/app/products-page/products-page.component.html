@@ -1,0 +1,19 @@
+<p class="text-lg font-semibold mb-4">Products Page</p>
+<div class="overflow-x-auto">
+  <table class="min-w-full border-collapse border border-gray-300 ">
+    <thead>
+      <tr class="bg-gray-200 rounded-xl">
+        <th class="border border-gray-300 px-4 py-2 text-left font-medium">Product Id</th>
+        <th class="border border-gray-300 px-4 py-2 text-left font-medium">Ean</th>
+        <th class="border border-gray-300 px-4 py-2 text-left font-medium">Product Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of products$ | async" class="even:bg-gray-100 odd:bg-white">
+        <td class="border border-gray-300 px-4 py-2">{{product.productId}}</td>
+        <td class="border border-gray-300 px-4 py-2">{{product.ean}}</td>
+        <td class="border border-gray-300 px-4 py-2">{{product.name}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

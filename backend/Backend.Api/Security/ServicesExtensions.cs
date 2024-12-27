@@ -27,5 +27,14 @@ public static class ServicesExtensions
 
 
    }
+   public static void AddCors(this IServiceCollection services, IConfiguration config)
+   {
+
+      var corsAllowedOriginsPath = "CORS:allowedOrigins";
+      var origins = config.GetValue<string>(corsAllowedOriginsPath) ?? throw new ArgumentNullException(corsAllowedOriginsPath);
+      services.AddCors(conf => conf.AddDefaultPolicy(c =>
+               c.WithOrigins(origins)
+               .AllowAnyHeader()));
+   }
 }
 

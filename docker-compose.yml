@@ -50,6 +50,8 @@ services:
       #TODO: TO BE MOVED TO SECRETS
       POSTGRES_PASSWORD: postgres
       PGDATA: /var/lib/postgresql/data/pgdata
+    ports:
+      - "5432:5432"
     deploy:
       resources:
           limits:

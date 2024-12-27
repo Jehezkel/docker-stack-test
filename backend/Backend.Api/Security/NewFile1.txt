@@ -1,0 +1,64 @@
+{
+  "date": "2024-12-27T15:04:07.262Z",
+  "type": "seacft",
+  "description": "Authorization Code for Access Token",
+  "connection_id": "",
+  "client_id": "E5JOm6kGzZCb70Epb8ug3K2ObNL15hlj",
+  "client_name": "Default App",
+  "ip": "194.15.120.49",
+  "client_ip": "194.15.120.49",
+  "user_agent": "Edge 131.0.0 / Mac OS X 10.15.7",
+  "details": {
+    "code": "******************************************Lq3"
+  },
+  "hostname": "dev-iweibmkscsnmzip6.eu.auth0.com",
+  "user_id": "google-oauth2|104570055267369272287",
+  "user_name": "heylookitscorpo@gmail.com",
+  "auth0_client": {
+    "name": "@auth0/auth0-angular",
+    "version": "2.2.3",
+    "env": {
+      "angular/core": "19.0.1"
+    }
+  },
+  "$event_schema": {
+    "version": "1.0.0"
+  },
+  "log_id": "90020241227150407336740000000000000001223372046536161028",
+  "tenant_name": "dev-iweibmkscsnmzip6",
+  "_id": "90020241227150407336740000000000000001223372046536161028",
+  "isMobile": false,
+  "originalData": {
+    "date": "2024-12-27T15:04:07.262Z",
+    "type": "seacft",
+    "description": "",
+    "connection_id": "",
+    "client_id": "E5JOm6kGzZCb70Epb8ug3K2ObNL15hlj",
+    "client_name": "Default App",
+    "ip": "194.15.120.49",
+    "client_ip": "194.15.120.49",
+    "user_agent": "Edge 131.0.0 / Mac OS X 10.15.7",
+    "details": {
+      "code": "******************************************Lq3"
+    },
+    "hostname": "dev-iweibmkscsnmzip6.eu.auth0.com",
+    "user_id": "google-oauth2|104570055267369272287",
+    "user_name": "heylookitscorpo@gmail.com",
+    "auth0_client": {
+      "name": "@auth0/auth0-angular",
+      "version": "2.2.3",
+      "env": {
+        "angular/core": "19.0.1"
+      }
+    },
+    "$event_schema": {
+      "version": "1.0.0"
+    },
+    "log_id": "90020241227150407336740000000000000001223372046536161028",
+    "tenant_name": "dev-iweibmkscsnmzip6",
+    "_id": "90020241227150407336740000000000000001223372046536161028",
+    "isMobile": false
+  },
+  "integrityRuleset": {},
+  "id": "90020241227150407336740000000000000001223372046536161028"
+}

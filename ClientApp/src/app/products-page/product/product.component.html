@@ -1,0 +1,7 @@
+<div class="min-w-[60%]  w-full mx-auto items-center flex flex-col ">
+  <h1 class="text-lg font-bold">{{ productId ===null ? 'Create Product': 'Edit Product' }}</h1>
+
+  <app-product-form class="w-2/3" [productData]="product$ | async"
+    (formSubmit)="onFormSubmit($event)"></app-product-form>
+
+</div>

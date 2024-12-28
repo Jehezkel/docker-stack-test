@@ -2,11 +2,16 @@ import { inject, Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { GetProductsResponse } from './GetProductsResponse';
+import { GetProductResponse } from './GetProductResponse';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiClientService {
+  updateProduct(productId: string, request: UpdateProductRequest) {
+    const url = `${this.webApiBase}/products/${productId}`
+    return this.httpClient.put(url, request)
+  }
   webApiBase = environment.API_URL_BASE
   httpClient = inject(HttpClient)
 
@@ -15,6 +20,16 @@ export class ApiClientService {
   getProducts() {
     const url = this.webApiBase + "/products"
     return this.httpClient.get<GetProductsResponse>(url)
+  }
+
+  getProduct(productId: string) {
+    const url = `${this.webApiBase}/products/${productId}`
+    return this.httpClient.get<GetProductResponse>(url)
+  }
+
+  deleteProduct(productId: string) {
+    const url = `${this.webApiBase}/products/${productId}`
+    return this.httpClient.delete<GetProductResponse>(url)
   }
 
   createProduct(request: CreateProductRequest) {
@@ -28,4 +43,7 @@ export interface CreateProductRequest {
 }
 export interface CreateProductResponse {
   productId: string
+}
+export interface UpdateProductRequest {
+  name: string
 }

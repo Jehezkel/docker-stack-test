@@ -1,0 +1,16 @@
+<!--toastr container-->
+<div class="absolute max-w-80 w-3/12 right-0 flex flex-col pr-2 pt-2 gap-2">
+  <div *ngFor="let notification of notifications$ | async"
+    class="h-16 p-2 flex text-white items-center gap-2 shadow shadow-gray-500 rounded"
+    [ngClass]="{'bg-red-400': notification.level === 'error', 'bg-green-600': notification.level==='success','bg-sky-500': notification.level==='info', 'bg-amber-500': notification.level ==='warning'}">
+    <div class="flex text-center">
+      <span class="material-symbols-outlined">
+        error
+      </span>
+    </div>
+    <div class="flex-col flex">
+      <p class="text-sm font-semibold">{{notification.title}}</p>
+      <p class="text-xs" *ngIf="notification.details!==undefined">{{notification.details}}</p>
+    </div>
+  </div>
+</div>

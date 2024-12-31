@@ -1,17 +1,18 @@
 import { Component, inject } from '@angular/core';
 import { AuthService, User } from '@auth0/auth0-angular';
-import { AsyncPipe } from '@angular/common';
+import { AsyncPipe, NgIf } from '@angular/common';
 import { Observable, map, filter } from 'rxjs';
 import { RouterLink } from '@angular/router';
 
 
 @Component({
   selector: 'app-top-bar',
-  imports: [AsyncPipe, RouterLink],
+  imports: [AsyncPipe, RouterLink, NgIf],
   templateUrl: './top-bar.component.html',
   styleUrl: './top-bar.component.scss'
 })
 export class TopBarComponent {
+  masterDataPaneOpen = false
   onLogout() {
     this.auth.logout()
   }

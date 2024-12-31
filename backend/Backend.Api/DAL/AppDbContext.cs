@@ -1,5 +1,6 @@
 using System.Linq.Expressions;
 using Backend.Api.DAL.Entities;
+using Backend.Api.MasterData;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
 using Microsoft.Extensions.Caching.Memory;
@@ -11,6 +12,9 @@ public class AppDbContext(DbContextOptions<AppDbContext> options, ICurrentUserSe
 {
     public DbSet<ProductEntity> Products => Set<ProductEntity>();
     public DbSet<AppUserEntity> Users => Set<AppUserEntity>();
+    public DbSet<CategoryEntity> Categories => Set<CategoryEntity>();
+    public DbSet<ManufacturerEntity> Manufacturer=> Set<ManufacturerEntity>();
+    public DbSet<ParameterEntity> Parameters=> Set<ParameterEntity>();
 
     public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
     {

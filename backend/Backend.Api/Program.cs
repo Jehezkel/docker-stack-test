@@ -2,6 +2,7 @@ using System.Reflection;
 using Backend.Api.DAL;
 using Backend.Api.Endpoint;
 using Backend.Api.Handlers;
+using Backend.Api.MasterData;
 using Backend.Api.Security;
 using MediatR;
 using Scalar.AspNetCore;
@@ -23,12 +24,16 @@ services.AddHttpContextAccessor();
 services.AddDatabase(config);
 services.AddEndpoints();
 
-services.AddHttpClient<IAuth0Client, Auth0Client>(opt=> opt.BaseAddress = new Uri(config["Auth0ApiClient:Url"] ?? throw new InvalidOperationException()));
+services.AddHttpClient<IAuth0Client, Auth0Client>(opt =>
+    opt.BaseAddress = new Uri(config["Auth0ApiClient:Url"] ?? throw new InvalidOperationException()));
 services.AddMemoryCache();
 services.AddScoped<IUserIdCacheStore, UserIdCachedStore>();
 
 services.AddScoped<IUserService, UserService>();
 services.AddScoped<ICurrentUserService, CurrentUserService>();
+services.AddScoped<IGenericRepository<CategoryEntity>, GenericRepository<CategoryEntity>>();
+services.AddScoped<IGenericRepository<ManufacturerEntity>, GenericRepository<ManufacturerEntity>>();
+services.AddScoped<IGenericRepository<ParameterEntity>, GenericRepository<ParameterEntity>>();
 // services.AddScoped<LocalUserCreationMiddleware>();*/
 var app = builder.Build();
 

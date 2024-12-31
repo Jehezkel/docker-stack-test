@@ -131,6 +131,60 @@ namespace Backend.Api.Migrations
                     b.ToTable("products", (string)null);
                 });
 
+            modelBuilder.Entity("Backend.Api.MasterData.CategoryEntity", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("name");
+
+                    b.HasKey("Id")
+                        .HasName("pk_categories");
+
+                    b.ToTable("categories", (string)null);
+                });
+
+            modelBuilder.Entity("Backend.Api.MasterData.ManufacturerEntity", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("name");
+
+                    b.HasKey("Id")
+                        .HasName("pk_manufacturer");
+
+                    b.ToTable("manufacturer", (string)null);
+                });
+
+            modelBuilder.Entity("Backend.Api.MasterData.ParameterEntity", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("name");
+
+                    b.HasKey("Id")
+                        .HasName("pk_parameters");
+
+                    b.ToTable("parameters", (string)null);
+                });
+
             modelBuilder.Entity("Backend.Api.DAL.Entities.MeasurementsEntity", b =>
                 {
                     b.HasOne("Backend.Api.DAL.Entities.ProductEntity", "ProductEntity")

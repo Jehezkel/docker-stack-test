@@ -8,7 +8,28 @@
         <a routerLink="home" class="p-2 rounded-xl hover:bg-sky-200 transition-colors">Home</a>
         <a routerLink="products" class="p-2 rounded-xl hover:bg-sky-200 transition-colors">Products</a>
         <a routerLink="about" class="p-2 rounded-xl hover:bg-sky-200 transition-colors"> About</a>
+        <div class="relative group" (mouseenter)="masterDataPaneOpen=true" (mouseleave)="masterDataPaneOpen=false">
+          <button class="p-2 rounded-xl hover:bg-sky-200 transition-colors  flex items-center"> Master Data<span
+              class="material-symbols-outlined">
+              keyboard_arrow_down
+            </span></button>
+          <!--MasterData options-->
+          <div class="grid absolute  pt-2 gap-2 text-sm text-gray-700" *ngIf="masterDataPaneOpen">
+            <div
+              class="bg-white rounded-xl shadow-lg overflow-hidden min-w-[200px] hover:*:bg-sky-50 last:pb-2 first:pt-2 grid gap-2  ring-1 ring-black ring-opacity-5">
+
+              <a routerLink="masterdata/categories" (click)="masterDataPaneOpen=false" class="px-4 py-2">
+                Categories
+              </a>
+              <a routerLink="masterdata/manufacturers" (click)="masterDataPaneOpen=false" class="px-4 py-2">
+                Manufacturers
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
+
+
       <!--user section-->
       <div class="flex ml-auto space-x-2">
         <p class="p-2"> {{ userName$ |async }}</p>

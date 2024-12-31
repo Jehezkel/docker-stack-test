@@ -8,6 +8,11 @@ import { GetProductResponse } from './GetProductResponse';
   providedIn: 'root'
 })
 export class ApiClientService {
+  getMasterDataRows(path: string) {
+
+    const url = `${this.webApiBase}/master-data/${path}`
+    return this.httpClient.get<any[]>(url)
+  }
   updateProduct(productId: string, request: UpdateProductRequest) {
     const url = `${this.webApiBase}/products/${productId}`
     return this.httpClient.put(url, request)

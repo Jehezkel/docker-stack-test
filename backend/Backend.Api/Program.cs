@@ -1,5 +1,6 @@
 using System.Reflection;
 using Backend.Api.DAL;
+using Backend.Api.DAL.Entities;
 using Backend.Api.Endpoint;
 using Backend.Api.Handlers;
 using Backend.Api.MasterData;
@@ -31,6 +32,7 @@ services.AddScoped<IUserIdCacheStore, UserIdCachedStore>();
 
 services.AddScoped<IUserService, UserService>();
 services.AddScoped<ICurrentUserService, CurrentUserService>();
+
 services.AddScoped<IGenericRepository<CategoryEntity>, GenericRepository<CategoryEntity>>();
 services.AddScoped<IGenericRepository<ManufacturerEntity>, GenericRepository<ManufacturerEntity>>();
 services.AddScoped<IGenericRepository<ParameterEntity>, GenericRepository<ParameterEntity>>();

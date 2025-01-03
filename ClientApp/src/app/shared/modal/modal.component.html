@@ -2,8 +2,10 @@
   *ngIf="modalVisible | async">
   <div class="flex flex-col bg-white w-[400px] h-44 rounded">
     <div class="h-1/6 min-h-fit  border-b-slate-400 border-b p-2">
-      <h2 class="h-full px-2 text-xl font-regular">Delete Confirmation</h2>
+      <h2 class="h-full px-2 text-xl font-regular">{{modalService.title}}</h2>
     </div>
+    @if(modalService.componentToProject===null){
+
     <div class="p-2 text-center text-sm mt-2">
       {{modalService.question}}
     </div>
@@ -13,5 +15,8 @@
       <button class="text-xs text-white bg-blue-700 rounded-2xl hover:bg-blue-600 px-6 py-2"
         (click)="Cancel()">{{modalService.cancelLabel}}</button>
     </div>
+    }@else{
+    }
+    <ng-container #componentContainer></ng-container>
   </div>
 </div>

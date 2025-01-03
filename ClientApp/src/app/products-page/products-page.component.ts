@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ApiClientService } from '../shared/api-client.service';
-import { BehaviorSubject, Observable, Subject, filter, map, switchMap } from 'rxjs';
+import { BehaviorSubject, Observable, filter, map, switchMap } from 'rxjs';
 import { GetProductsEntry, GetProductsResponse } from '../shared/GetProductsResponse';
 import { AsyncPipe, NgFor } from '@angular/common';
 import { RouterLink } from '@angular/router';
@@ -16,9 +16,16 @@ import { ToastrService } from '../shared/toastr/toastr.service';
 export class ProductsPageComponent implements OnInit {
   modalService = inject(ModalService)
   toastrService = inject(ToastrService)
+  modalVisible = false;
+  apiClient = inject(ApiClientService);
+  refreshCall$ = new BehaviorSubject<null>(null)
+  productsResponse$: Observable<GetProductsResponse> =
+    this.refreshCall$.pipe(switchMap(_ => this.apiClient.getProducts()))
+  products$ = this.productsResponse$.pipe(map(r => r.items))
+
   onDelete(product: GetProductsEntry) {
-    this.modalService.show(`Are you sure to delete product EAN ${product.ean}`, "Delete", "Cancel")
-      .pipe(filter(result => result),
+    this.modalService.show(`Are you sure to delete product EAN ${product.ean}`, "Delete", "Cancel", "Delete confirmation")
+      .pipe(filter(result => result === true),
         switchMap(_ => this.apiClient.deleteProduct(product.productId)))
       .subscribe(
         {
@@ -36,15 +43,6 @@ export class ProductsPageComponent implements OnInit {
       )
   }
 
-  modalVisible = false;
-  productsResponse$: Observable<GetProductsResponse>;
-  products$: Observable<GetProductsEntry[]>;
-  apiClient = inject(ApiClientService);
-  refreshCall$ = new BehaviorSubject<null>(null)
-  constructor() {
-    this.productsResponse$ = this.refreshCall$.pipe(switchMap(_ => this.apiClient.getProducts()))
-    this.products$ = this.productsResponse$.pipe(map(r => r.items))
-  }
   ngOnInit(): void {
     this.refreshCall$.next(null)
   }

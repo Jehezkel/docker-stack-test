@@ -8,9 +8,18 @@ import { GetProductResponse } from './GetProductResponse';
   providedIn: 'root'
 })
 export class ApiClientService {
-  getMasterDataRows(path: string) {
+  editMasterDataRow(entityName: string, id: string, request: any): any {
+    console.log(request)
+    const url = `${this.webApiBase}/master-data/${entityName}/${id}`
+    return this.httpClient.put(url, request)
+  }
+  deleteMasterDataRow(entityName: string, id: any): any {
+    const url = `${this.webApiBase}/master-data/${entityName}/${id}`
+    return this.httpClient.delete<any[]>(url)
+  }
+  getMasterDataRows(entityName: string) {
 
-    const url = `${this.webApiBase}/master-data/${path}`
+    const url = `${this.webApiBase}/master-data/${entityName}`
     return this.httpClient.get<any[]>(url)
   }
   updateProduct(productId: string, request: UpdateProductRequest) {
@@ -40,6 +49,10 @@ export class ApiClientService {
   createProduct(request: CreateProductRequest) {
     const url = this.webApiBase + "/products"
     return this.httpClient.post<CreateProductResponse>(url, request)
+  }
+  createMasterDataRow(entityName: string, request: any) {
+    const url = `${this.webApiBase}/master-data/${entityName}`
+    return this.httpClient.post(url, request)
   }
 }
 export interface CreateProductRequest {

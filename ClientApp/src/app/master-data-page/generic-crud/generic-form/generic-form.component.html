@@ -1,0 +1,7 @@
+<div>
+  <form [formGroup]="formGroup" (ngSubmit)="onSubmit()" class="mx-auto flex flex-col items-center">
+    <app-input *ngFor="let formField of formConfig.fields" label="{{formField.label}}"
+      formControlName="{{formField.field}}" />
+    <button>Save</button>
+  </form>
+</div>

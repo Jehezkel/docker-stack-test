@@ -1,0 +1,37 @@
+<div class="flex flex-col items-center w-fit mx-auto">
+  <h1 class="text-xl font-semibold mb-4 capitalize">{{config.entityName}} List</h1>
+  <div class="overflow-x-auto p-2 flex flex-col">
+    <button
+      class="rounded-3xl px-5 py-3 bg-blue-700 text-xs text-white font-semibold hover:bg-blue-600  transition-colors cursor-pointer select-none self-end"
+      (click)="onAddClick()">
+      Add row
+    </button>
+    <table class="min-w-full border-collapse border border-gray-300 mt-4">
+      <thead>
+        <tr class="bg-gray-200 rounded-xl">
+          <th class="border border-gray-300 px-4 py-2 text-left font-medium"
+            *ngFor="let col of config.tableConfig.columns">{{ col.header}}</th>
+          <th> Actions </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let row of dataRows$ |async" class="even:bg-gray-100 odd:bg-white">
+          <td class="border border-gray-300 px-4 py-2" *ngFor="let col of config.tableConfig.columns">{{row[col.field]}}
+          </td>
+          <td class="border border-gray-300 px-4 py-2">
+            <button (click)="onDelete(row)">
+              <span class="material-symbols-outlined">
+                delete
+              </span>
+            </button>
+            <button (click)="onEditClick(row)">
+              <span class="material-symbols-outlined">
+                edit
+              </span>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

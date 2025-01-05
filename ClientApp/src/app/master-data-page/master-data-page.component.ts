@@ -26,11 +26,11 @@ export interface EntityConfig {
   formConfig: FormConfig
   path: string
   label: string
-
 }
 
 export interface TableConfig {
   columns: ColumnConfig[]
+  actions: Action[]
 }
 
 export interface ColumnConfig {
@@ -46,4 +46,11 @@ export interface FieldConfig {
   isEditable: boolean
   type: string
   validators: any[]
+}
+
+export interface Action {
+  label: string
+  icon: string
+  fn?: (row: any) => void
+  pathFn?: (row: any) => string
 }

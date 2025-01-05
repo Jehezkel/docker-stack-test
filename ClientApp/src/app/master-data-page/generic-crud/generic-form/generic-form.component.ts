@@ -3,15 +3,16 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { FormConfig } from '../../master-data-page.component';
 import { InputComponent } from '../../../shared/input/input.component';
 import { NgFor } from '@angular/common';
+import { ButtonStyle } from '../../../shared/button-style/button-style.component';
 
 @Component({
   selector: 'app-generic-form',
-  imports: [ReactiveFormsModule, InputComponent, NgFor],
+  imports: [ReactiveFormsModule, InputComponent, NgFor, ButtonStyle],
   templateUrl: './generic-form.component.html',
   styleUrl: './generic-form.component.scss'
 })
 export class GenericFormComponent implements OnInit {
-  @Output() close = new EventEmitter<any>
+  @Output() close = new EventEmitter<any | undefined>
   @Input() formConfig!: FormConfig
   @Input() inputValue: any | undefined
 
@@ -34,5 +35,8 @@ export class GenericFormComponent implements OnInit {
     if (this.formGroup.valid) {
       this.close.emit(this.formGroup.value)
     }
+  }
+  onCancel() {
+    this.close.emit()
   }
 }

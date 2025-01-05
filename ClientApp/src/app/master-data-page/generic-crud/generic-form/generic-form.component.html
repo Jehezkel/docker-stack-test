@@ -2,6 +2,9 @@
   <form [formGroup]="formGroup" (ngSubmit)="onSubmit()" class="mx-auto flex flex-col items-center">
     <app-input *ngFor="let formField of formConfig.fields" label="{{formField.label}}"
       formControlName="{{formField.field}}" />
-    <button>Save</button>
+    <div class="flex gap-2 my-4">
+      <button btnStyle>Save</button>
+      <button btnStyle btnType="secondary" type="button" (click)="onCancel()">Cancel</button>
+    </div>
   </form>
 </div>

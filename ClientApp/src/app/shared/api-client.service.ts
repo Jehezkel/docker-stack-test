@@ -9,7 +9,6 @@ import { GetProductResponse } from './GetProductResponse';
 })
 export class ApiClientService {
   editMasterDataRow(entityName: string, id: string, request: any): any {
-    console.log(request)
     const url = `${this.webApiBase}/master-data/${entityName}/${id}`
     return this.httpClient.put(url, request)
   }

@@ -8,7 +8,7 @@ public class GenericRepository<T>(AppDbContext appDbContext)
 {
     public async Task<List<T>> GetEntities()
     {
-        return await appDbContext.Set<T>().ToListAsync();
+        return await appDbContext.Set<T>().OrderBy(e=>e.Id).ToListAsync();
     }
 
     public async Task<T?> GetEntityById(Guid id)
@@ -40,6 +40,6 @@ public class GenericRepository<T>(AppDbContext appDbContext)
     {
         await appDbContext.Set<T>().AddAsync(entity);
         await appDbContext.SaveChangesAsync();
-        return entity.Id;
+       return entity.Id;
     }
 }

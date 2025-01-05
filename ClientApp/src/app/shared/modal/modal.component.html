@@ -1,22 +1,20 @@
-<div class="absolute top-0 flex items-center justify-center left-0 w-screen h-screen bg-black bg-opacity-40"
-  *ngIf="modalVisible | async">
-  <div class="flex flex-col bg-white w-[400px] h-44 rounded">
-    <div class="h-1/6 min-h-fit  border-b-slate-400 border-b p-2">
+<div class="absolute top-0 flex items-center justify-center left-0 h-screen w-screen" *ngIf="modalVisible | async">
+  <div class="absolute top-0 left-0 w-screen h-screen bg-black bg-opacity-40 z-40" (click)="Cancel()"></div>
+  <div class="flex flex-col bg-white w-[400px] h-44 min-h-fit rounded z-50">
+    <div class="h-1/6 min-h-fit  border-b-slate-400 border-b p-2 mb-4">
       <h2 class="h-full px-2 text-xl font-regular">{{modalService.title}}</h2>
     </div>
     @if(modalService.componentToProject===null){
 
-    <div class="p-2 text-center text-sm mt-2">
+    <div class="p-2 text-center text-sm ">
       {{modalService.question}}
     </div>
     <div class="flex items-center gap-4 justify-center mt-4">
-      <button class="text-xs text-white bg-blue-700 rounded-2xl hover:bg-blue-600 px-6 py-2"
-        (click)="Confirm()">{{modalService.confirmLabel}}</button>
-      <button class="text-xs text-white bg-blue-700 rounded-2xl hover:bg-blue-600 px-6 py-2"
-        (click)="Cancel()">{{modalService.cancelLabel}}</button>
+      <button btnStyle btnType="danger" (click)="Confirm()">{{modalService.confirmLabel}}</button>
+      <button btnStyle btnType="secondary" (click)="Cancel()">{{modalService.cancelLabel}}</button>
     </div>
     }@else{
-    }
     <ng-container #componentContainer></ng-container>
+    }
   </div>
 </div>

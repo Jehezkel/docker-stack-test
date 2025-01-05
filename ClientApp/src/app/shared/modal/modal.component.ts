@@ -2,10 +2,11 @@ import { AsyncPipe, NgIf } from '@angular/common';
 import { Component, inject, OnInit, ViewContainerRef, ViewChild, OnDestroy, ComponentRef } from '@angular/core';
 import { ModalService } from './modal.service';
 import { delay, filter, Subscription } from 'rxjs'
+import { ButtonStyle } from '../button-style/button-style.component';
 
 @Component({
   selector: 'app-modal',
-  imports: [NgIf, AsyncPipe],
+  imports: [NgIf, AsyncPipe, ButtonStyle],
   templateUrl: './modal.component.html',
   styleUrl: './modal.component.scss'
 })
@@ -20,7 +21,7 @@ export class ModalComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
 
     const visabilitySub = this.modalService.modalVisible$
-      .pipe(delay(0), filter(isVisible => isVisible && this.modalService.componentToProject !== null))
+      .pipe(delay(1), filter(isVisible => isVisible && this.modalService.componentToProject !== null))
       .subscribe(_ => this.renderComponent())
     this.subsToDestroy.push(visabilitySub)
 
@@ -31,7 +32,7 @@ export class ModalComponent implements OnInit, OnDestroy {
   }
 
   Cancel() {
-    this.modalService.hide(false)
+    this.modalService.hide()
   }
 
   Confirm() {
@@ -40,6 +41,7 @@ export class ModalComponent implements OnInit, OnDestroy {
 
   renderComponent() {
 
+    console.log(this.modalContainer)
     if (!this.modalContainer || !this.modalService.componentToProject) {
       throw Error("Missing container")
     }

@@ -1,5 +1,5 @@
 import { Component, inject, Input, OnInit } from '@angular/core';
-import { EntityConfig } from '../master-data-page.component';
+import { EntityConfig, TableConfig } from '../master-data-page.component';
 import { AsyncPipe, NgFor } from '@angular/common';
 import { Observable, Subject, filter, startWith, switchMap } from 'rxjs';
 import { ApiClientService } from '../../shared/api-client.service';
@@ -7,11 +7,13 @@ import { ToastrService } from '../../shared/toastr/toastr.service';
 import { ModalService } from '../../shared/modal/modal.service';
 import { Validators } from '@angular/forms';
 import { GenericFormComponent } from './generic-form/generic-form.component';
+import { ButtonStyle } from '../../shared/button-style/button-style.component';
+import { TableComponent } from '../../shared/table/table.component';
 
 
 @Component({
   selector: 'app-generic-crud',
-  imports: [NgFor, AsyncPipe],
+  imports: [NgFor, AsyncPipe, ButtonStyle, TableComponent],
   templateUrl: './generic-crud.component.html',
   styleUrl: './generic-crud.component.scss'
 })
@@ -26,8 +28,10 @@ export class GenericCRUDComponent implements OnInit {
   refreshCall$ = new Subject<void>()
 
   onAddClick() {
-    this.modalService.showComponent(GenericFormComponent, { formConfig: this.config.formConfig }, "Add Form")
-      .pipe(switchMap(result => this.apiClient.createMasterDataRow(this.config.path, result)))
+    this.modalService.showComponent(GenericFormComponent, { formConfig: this.config.formConfig }, "Add Record")
+      .pipe(
+        //filter(result => result !== undefined),
+        switchMap(result => this.apiClient.createMasterDataRow(this.config.path, result)))
       .subscribe(
         {
           next:
@@ -44,9 +48,12 @@ export class GenericCRUDComponent implements OnInit {
       )
   }
 
-  onEditClick(record: any) {
-    this.modalService.showComponent(GenericFormComponent, { formConfig: this.config.formConfig, inputValue: record }, "Edit Form")
-      .pipe(switchMap(result => this.apiClient.editMasterDataRow(this.config.path, record.id, result)))
+  onEditClick(row: any) {
+    this.modalService.showComponent(GenericFormComponent, { formConfig: this.config.formConfig, inputValue: row }, "Edit Record")
+      .pipe(
+        //filter(result => result !== undefined),
+        switchMap(result => this.apiClient.editMasterDataRow(this.config.path, row.id, result)),
+      )
       .subscribe(
         {
           next:
@@ -65,7 +72,8 @@ export class GenericCRUDComponent implements OnInit {
 
   onDelete(row: any) {
     this.modalService.show(`Are you sure to delete this row ?`, "Delete", "Cancel", "Delete confirmation")
-      .pipe(filter(result => result),
+      .pipe(
+        filter(result => result === true),
         switchMap(_ => this.apiClient.deleteMasterDataRow(this.config.path, row.id)))
       .subscribe(
         {
@@ -83,9 +91,19 @@ export class GenericCRUDComponent implements OnInit {
       )
   }
   ngOnInit(): void {
-    this.dataRows$ = this.refreshCall$.pipe(startWith(null), switchMap(_ => this.apiClient.getMasterDataRows(this.config.path)))
+    this.dataRows$ = this.refreshCall$
+      .pipe(startWith(null), switchMap(_ => this.apiClient.getMasterDataRows(this.config.path)))
+
+    this.setActions()
 
   }
+  setActions() {
+    this.config.tableConfig.actions = [
+      { label: "Delete", icon: "delete", fn: (row: any) => this.onDelete(row) },
+      { label: "Edit", icon: "edit", fn: (row: any) => this.onEditClick(row) },
+    ]
+  }
+
 }
 
 export const CategoriesConfig: EntityConfig = {
@@ -100,7 +118,8 @@ export const CategoriesConfig: EntityConfig = {
   tableConfig: {
     columns: [
       { header: "Category Name", field: "name" }
-    ]
+    ],
+    actions: []
   }
 }
 export const Manufacturers: EntityConfig = {
@@ -115,7 +134,8 @@ export const Manufacturers: EntityConfig = {
   tableConfig: {
     columns: [
       { header: "Manufacturer Name", field: "name" }
-    ]
+    ],
+    actions: []
   }
 }
 export const MasterData: EntityConfig[] = [CategoriesConfig, Manufacturers]

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, Subject, take } from 'rxjs';
+import { BehaviorSubject, filter, Observable, Subject, take } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -35,13 +35,11 @@ export class ModalService {
     this.componentToProject = component
     this.modalVisibleSubject$.next(true)
     this.title = title
-    return this.modalResult$.pipe(take(1))
+    return this.modalResult$.pipe(filter(result => result !== undefined))
   }
 
   hide(result?: any) {
-    if (result !== undefined) {
-      this.modalResultSubject.next(result)
-    }
+    this.modalResultSubject.next(result)
     this.modalVisibleSubject$.next(false)
     this.componentToProject = null;
     this.componentsInput = {};

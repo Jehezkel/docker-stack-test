@@ -2,10 +2,11 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { InputComponent } from "../../shared/input/input.component";
+import { ButtonStyle } from '../../shared/button-style/button-style.component';
 
 @Component({
   selector: 'app-product-form',
-  imports: [ReactiveFormsModule, RouterLink, InputComponent],
+  imports: [ReactiveFormsModule, RouterLink, InputComponent, ButtonStyle],
   templateUrl: './product-form.component.html',
   styleUrl: './product-form.component.scss'
 })

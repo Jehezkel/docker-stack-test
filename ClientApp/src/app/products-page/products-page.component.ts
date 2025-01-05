@@ -3,19 +3,23 @@ import { ApiClientService } from '../shared/api-client.service';
 import { BehaviorSubject, Observable, filter, map, switchMap } from 'rxjs';
 import { GetProductsEntry, GetProductsResponse } from '../shared/GetProductsResponse';
 import { AsyncPipe, NgFor } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { ModalService } from '../shared/modal/modal.service';
 import { ToastrService } from '../shared/toastr/toastr.service';
+import { ButtonStyle } from '../shared/button-style/button-style.component';
+import { TableConfig } from '../master-data-page/master-data-page.component';
+import { TableComponent } from "../shared/table/table.component";
 
 @Component({
   selector: 'app-products-page',
-  imports: [AsyncPipe, NgFor, RouterLink],
+  imports: [AsyncPipe, NgFor, RouterLink, ButtonStyle, TableComponent],
   templateUrl: './products-page.component.html',
   styleUrl: './products-page.component.scss'
 })
 export class ProductsPageComponent implements OnInit {
   modalService = inject(ModalService)
   toastrService = inject(ToastrService)
+  router = inject(Router)
   modalVisible = false;
   apiClient = inject(ApiClientService);
   refreshCall$ = new BehaviorSubject<null>(null)
@@ -42,9 +46,20 @@ export class ProductsPageComponent implements OnInit {
         }
       )
   }
-
+  getPathForEdit = (product: GetProductsEntry) => `edit/${product.productId}`
   ngOnInit(): void {
     this.refreshCall$.next(null)
+  }
+  productTableConfig: TableConfig = {
+    columns: [
+      { header: "Product Id", field: "productId" },
+      { header: "Ean", field: "ean" },
+      { header: "Product Name", field: "name" },
+    ],
+    actions: [
+      { label: "Edit", icon: "edit", pathFn: (row) => this.getPathForEdit(row) },
+      { label: "Delete", icon: "delete", fn: (row) => this.onDelete(row) }
+    ]
   }
 
 }
